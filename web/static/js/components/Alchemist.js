@@ -1,6 +1,9 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import Potions from '../containers/Potions'
 
-const Alchemist = ({addOrEditAlchemist, finishAddOrEditAlchemist, removeAlchemist, editing, name, id, craftAlchemy}) => {
+//TODO: refactor individual traits to editable components
+
+const Alchemist = ({addOrEditAlchemist, finishAddOrEditAlchemist, removeAlchemist, editing, name, id, craftAlchemy, potions}) => {
     let nameInput, craftInput
     let alchemistInfo
 
@@ -19,13 +22,18 @@ const Alchemist = ({addOrEditAlchemist, finishAddOrEditAlchemist, removeAlchemis
                     max={500}
                     defaultValue={craftAlchemy ? craftAlchemy : 0}
                 />
-                <button type="submit">Finish </button>
+                <button type="submit">Finish</button>
         </form>
     } else {
         alchemistInfo = <span>
             {name && <button className="btn-remove" onClick={(e) => removeAlchemist(id)}>x</button>}
-            <p className="ipt-replace-top"> {name ? name : "new alchemist"} </p>
-            <p className="ipt-replace"> {name ? "Craft (alchemy): " + craftAlchemy : ""}</p>
+            <p className="ipt-replace-top" onClick={!name ? "" : e => addOrEditAlchemist(id)}>
+                {name ? name : "new alchemist"}
+            </p>
+            <p className="ipt-replace" onClick={!name ? "" : e => addOrEditAlchemist(id)}>
+                {name ? "Craft (alchemy): " + craftAlchemy : ""}
+            </p>
+            {name && <Potions alchemistId={id} potions={potions} />}
         </span>
     }
 
@@ -33,7 +41,7 @@ const Alchemist = ({addOrEditAlchemist, finishAddOrEditAlchemist, removeAlchemis
         <div className={"col-lg-3 col-md-4 col-xs-6"}>
             <div
                 className={"alchemist" + (name ? " existing" : "")}
-                onClick={editing ? "" : e => addOrEditAlchemist(id)}>
+                onClick={editing || name ? "" : e => addOrEditAlchemist(id)}>
                 {alchemistInfo}
             </div>
         </div>

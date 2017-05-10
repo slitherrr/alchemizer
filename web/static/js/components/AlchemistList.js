@@ -1,16 +1,13 @@
 import React from 'react'
-import Alchemist from './Alchemist'
+import Alchemist from '../containers/Alchemist'
 
 
 const AlchemistList = ({alchemists, addOrEditAlchemist, finishAddOrEditAlchemist, removeAlchemist}) => {
     return (
-        <div className="container">
+        <div>
             {alchemists.map(alchemist =>
                 <Alchemist
                     key={alchemist.id === undefined ? "" : alchemist.id}
-                    removeAlchemist={removeAlchemist}
-                    addOrEditAlchemist={addOrEditAlchemist}
-                    finishAddOrEditAlchemist={finishAddOrEditAlchemist}
                     {...alchemist}
                 />
             )}

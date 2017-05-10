@@ -2,7 +2,7 @@ import React from 'react'
 import Alchemists from '../containers/Alchemists'
 
 const App = () => (
-    <div>
+    <div className="container">
         <Alchemists />
     </div>
 )
