@@ -1,29 +1,8 @@
 import { combineReducers } from 'redux'
+import Alchemists from './Alchemists'
 
-let counter = (state = 0, action) => {
-    switch (action.type) {
-        case 'INCREMENT':
-            return state + 1
-        case 'DECREMENT':
-            return state - 1
-        default:
-            return state
-    }
-}
-
-let colorToggle = (state = 'white', action) => {
-    switch (action.type) {
-        case 'COLORTOGGLE':
-            console.log(state)
-            return state === 'white' ? 'blue' : 'white'
-        default:
-            return state
-    }
-}
-
-const alchemizerApp = combineReducers({
-    counter,
-    colorToggle,
+const rootReducer = combineReducers({
+    alchemists: Alchemists
 })
 
-export default alchemizerApp
+export default rootReducer
