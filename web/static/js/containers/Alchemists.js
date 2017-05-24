@@ -3,7 +3,8 @@ import AlchemistList from '../components/AlchemistList'
 
 const mapStateToProps = (state) => {
     return {
-        alchemists: state.alchemists
+        alchemists: state.alchemists.byId,
+        alchemistIds: state.alchemists.allIds
     }
 }
 

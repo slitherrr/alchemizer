@@ -25,7 +25,10 @@ const Potion = ({alchemistId, removePotion, id, potionType, cl}) => {
             <Search items={allPotionsMock}
                     placeholder={"Pick a potion"}
             />
-            <button onClick={e => removePotion(id)}>x</button>
+            <button onClick={e => {
+                e.stopPropagation()
+                removePotion(id)
+            }}>x</button>
             {potionInfo}
         </div>
     )
