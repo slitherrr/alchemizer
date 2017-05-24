@@ -1,14 +1,17 @@
 import {connect} from 'react-redux'
 import Alchemist from '../components/Alchemist'
-import {addOrEditAlchemist, finishAddOrEditAlchemist, removeAlchemist} from '../actions'
+import {addAlchemist, startEditAlchemist, finishEditAlchemist, removeAlchemist} from '../actions'
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addOrEditAlchemist: (id) => {
-            dispatch(addOrEditAlchemist(id))
+        addAlchemist: () => {
+            dispatch(addAlchemist())
         },
-        finishAddOrEditAlchemist: (id, name, craftAlchemy) => {
-            dispatch(finishAddOrEditAlchemist(id, name, (craftAlchemy === "" ? 0 : parseInt(craftAlchemy, 10))))
+        startEditAlchemist: (id) => {
+            dispatch(startEditAlchemist(id))
+        },
+        finishEditAlchemist: (id, name, craftAlchemy) => {
+            dispatch(finishEditAlchemist(id, name, (craftAlchemy === "" ? 0 : parseInt(craftAlchemy, 10))))
         },
         removeAlchemist: (id) => {
             dispatch(removeAlchemist(id))

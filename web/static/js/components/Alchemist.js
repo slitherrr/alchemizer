@@ -2,38 +2,41 @@ import React from 'react'
 import Potions from '../containers/Potions'
 
 //TODO: refactor individual traits to editable components
-
-const Alchemist = ({addOrEditAlchemist, finishAddOrEditAlchemist, removeAlchemist, editing, name, id, craftAlchemy, potions}) => {
+const Alchemist = ({addAlchemist, startEditAlchemist, finishEditAlchemist, removeAlchemist, editing, name, id, craftAlchemy, potions}) => {
     let nameInput, craftInput
     let alchemistInfo
-
     if(editing) {
-        alchemistInfo = <form onSubmit={e => {
-                e.preventDefault()
-                finishAddOrEditAlchemist(id, nameInput.value.trim(), craftInput.value.trim())
-            }}>
-                <input type="text" className="ipt-alchemist" autoFocus ref={node => {nameInput = node}} defaultValue={name ? name : ""} />
-                Craft (alchemy)
-                <input
-                    type="number"
-                    className="ipt-alchemist"
-                    ref={node => {craftInput = node}}
-                    min={0}
-                    max={500}
-                    defaultValue={craftAlchemy ? craftAlchemy : 0}
-                />
-                <button type="submit">Finish</button>
-        </form>
+        alchemistInfo = <span>
+            <form onSubmit={e => {
+                    e.preventDefault()
+                    finishEditAlchemist(id, nameInput.value.trim(), craftInput.value.trim())
+                }}>
+                    <input type="text" className="ipt-alchemist" autoFocus ref={node => {nameInput = node}} defaultValue={name ? name : ""} />
+                    Craft (alchemy)
+                    <input
+                        type="number"
+                        className="ipt-alchemist"
+                        ref={node => {craftInput = node}}
+                        min={0}
+                        max={500}
+                        defaultValue={craftAlchemy ? craftAlchemy : 0}
+                    />
+                    <button type="submit">Finish</button>
+            </form>
+            {<Potions alchemistId={id} potions={potions} />}
+        </span>
+    } else if (id === undefined) {
+        alchemistInfo = <span>new alchemist</span>
     } else {
         alchemistInfo = <span>
-            {name && <button className="btn-remove" onClick={(e) => removeAlchemist(id)}>x</button>}
-            <p className="ipt-replace-top" onClick={!name ? "" : e => addOrEditAlchemist(id)}>
-                {name ? name : "new alchemist"}
+            <button className="btn-remove" onClick={e => removeAlchemist(id)}>x</button>
+            <p className="ipt-replace-top" onClick={e => startEditAlchemist(id)}>
+                {name}
             </p>
-            <p className="ipt-replace" onClick={!name ? "" : e => addOrEditAlchemist(id)}>
-                {name ? "Craft (alchemy): " + craftAlchemy : ""}
+            <p className="ipt-replace" onClick={e => startEditAlchemist(id)}>
+                {"Craft (alchemy): " + craftAlchemy}
             </p>
-            {name && <Potions alchemistId={id} potions={potions} />}
+            {<Potions alchemistId={id} potions={potions} />}
         </span>
     }
 
@@ -41,7 +44,7 @@ const Alchemist = ({addOrEditAlchemist, finishAddOrEditAlchemist, removeAlchemis
         <div className={"col-lg-3 col-md-4 col-xs-6"}>
             <div
                 className={"alchemist" + (name ? " existing" : "")}
-                onClick={editing || name ? "" : e => addOrEditAlchemist(id)}>
+                onClick={id === undefined ? e => addAlchemist() : e => startEditAlchemist(id)}>
                 {alchemistInfo}
             </div>
         </div>

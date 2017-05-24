@@ -1,15 +1,23 @@
 let nextPotionId = 0
+let nextAlchemistId = 0
 
-export const addOrEditAlchemist = (id) => {
+export const addAlchemist = () => {
     return {
-        type: 'ADD_OR_EDIT_ALCHEMIST',
+        type: 'ADD_ALCHEMIST',
+        id: nextAlchemistId++
+    }
+}
+
+export const startEditAlchemist = (id) => {
+    return {
+        type: 'START_EDIT_ALCHEMIST',
         id: id
     }
 }
 
-export const finishAddOrEditAlchemist = (id, name, craftAlchemy) => {
+export const finishEditAlchemist = (id, name, craftAlchemy) => {
     return {
-        type: 'FINISH_ADD_OR_EDIT_ALCHEMIST',
+        type: 'FINISH_EDIT_ALCHEMIST',
         name: name,
         craftAlchemy: craftAlchemy,
         id: id

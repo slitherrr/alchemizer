@@ -2,15 +2,19 @@ import React from 'react'
 import Alchemist from '../containers/Alchemist'
 
 
-const AlchemistList = ({alchemists, addOrEditAlchemist, finishAddOrEditAlchemist, removeAlchemist}) => {
+const AlchemistList = ({alchemists, alchemistIds}) => {
     return (
         <div>
-            {alchemists.map(alchemist =>
+            {alchemistIds.map(alchemistId =>
                 <Alchemist
-                    key={alchemist.id === undefined ? "" : alchemist.id}
-                    {...alchemist}
+                    key={alchemistId}
+                    id={alchemistId}
+                    {...alchemists[alchemistId]}
                 />
             )}
+            <Alchemist
+                id={undefined}
+                />
         </div>
    )
 }

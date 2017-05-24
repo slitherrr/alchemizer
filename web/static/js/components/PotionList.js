@@ -14,7 +14,10 @@ const PotionList = ({potions, alchemistId, addPotion, removePotion}) => {
                     />
                 )
             )}
-            <button onClick={e => addPotion(alchemistId)}>add</button>
+            <button onClick={e => {
+                e.stopPropagation()
+                addPotion(alchemistId)
+            }}>add</button>
         </div>
     )
 }
