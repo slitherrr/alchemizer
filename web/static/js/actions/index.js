@@ -4,7 +4,7 @@ let nextAlchemistId = 0
 export const addAlchemist = () => {
     return {
         type: 'ADD_ALCHEMIST',
-        id: nextAlchemistId++
+        id: "alchemist" + nextAlchemistId++
     }
 }
 
@@ -34,14 +34,23 @@ export const removeAlchemist = (id) => {
 export const addPotion = (alchemistId) => {
     return {
         type: 'ADD_POTION',
-        id: nextPotionId++,
+        id: "potion" + nextPotionId++,
         alchemistId: alchemistId
     }
 }
 
-export const removePotion = (id) => {
+export const removePotion = (alchemistId, id) => {
     return {
         type: 'REMOVE_POTION',
-        id: id
+        id: id,
+        alchemistId: alchemistId
+    }
+}
+
+export const editPotion = (id, spellId) => {
+    return {
+        type: 'EDIT_POTION',
+        id: id,
+        spellId: spellId
     }
 }

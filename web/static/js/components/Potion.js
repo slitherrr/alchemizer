@@ -1,9 +1,9 @@
 import React from 'react'
 import Search from 'react-search'
 
-const Potion = ({alchemistId, removePotion, id, potionType, cl}) => {
+const Potion = ({alchemistId, editPotion, removePotion, id, spellId, cl}) => {
     let potionInfo
-    let allPotionsMock = [
+    let allSpellsMock = [
         {
             id: 0,
             value: 'Spider Climb',
@@ -14,20 +14,27 @@ const Potion = ({alchemistId, removePotion, id, potionType, cl}) => {
             }
         }
     ]
-    if (name) {
-        potionInfo = <span>placeholder cv {name}</span>
+    console.log("spellId " + spellId)
+    if (spellId !== undefined) {
+        potionInfo = <span>{allSpellsMock[spellId].value}</span>
     } else {
-        potionInfo = <span>placeholder no cv</span>
+        potionInfo = <span>(new potion)</span>
     }
 
     return (
         <div>
-            <Search items={allPotionsMock}
+            <Search items={allSpellsMock}
                     placeholder={"Pick a potion"}
+                    onItemsChanged={items => {
+                        if(items.length == 0) {
+                            editPotion(id, undefined)
+                        } else {
+                            editPotion(id, items[0].id)
+                        }
+                    }}
             />
-            <button onClick={e => {
-                e.stopPropagation()
-                removePotion(id)
+            <button className="btn-remove" onClick={e => {
+                removePotion(alchemistId, id)
             }}>x</button>
             {potionInfo}
         </div>

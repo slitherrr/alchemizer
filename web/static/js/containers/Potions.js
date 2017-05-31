@@ -1,10 +1,10 @@
 import {connect} from 'react-redux'
 import PotionList from '../components/PotionList'
-import {addPotion, removePotion} from '../actions'
+import {addPotion, editPotion, removePotion} from '../actions'
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        potions: state.potions.filter(p => ownProps.potions.includes(p.id))
+        potions: ownProps.potions.map(pId => state.potions.byId[pId])
     }
 }
 
@@ -13,9 +13,12 @@ const mapDispatchToProps = (dispatch) => {
         addPotion: (alchemistId) => {
             dispatch(addPotion(alchemistId))
         },
-        removePotion: (id) => {
-            dispatch(removePotion(id))
-        }
+        editPotion: (id, spellId) => {
+            dispatch(editPotion(id, spellId))
+        },
+        removePotion: (alchemistId, id) => {
+            dispatch(removePotion(alchemistId, id))
+        },
     }
 }
 

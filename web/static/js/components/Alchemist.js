@@ -23,7 +23,6 @@ const Alchemist = ({addAlchemist, startEditAlchemist, finishEditAlchemist, remov
                     />
                     <button type="submit">Finish</button>
             </form>
-            {<Potions alchemistId={id} potions={potions} />}
         </span>
     } else if (id === undefined) {
         alchemistInfo = <span>new alchemist</span>
@@ -44,7 +43,7 @@ const Alchemist = ({addAlchemist, startEditAlchemist, finishEditAlchemist, remov
         <div className={"col-lg-3 col-md-4 col-xs-6"}>
             <div
                 className={"alchemist" + (name ? " existing" : "")}
-                onClick={id === undefined ? e => addAlchemist() : e => startEditAlchemist(id)}>
+                onClick={id === undefined ? e => addAlchemist() : ""}>
                 {alchemistInfo}
             </div>
         </div>

@@ -24,6 +24,7 @@ const alchemistsById = (state = {}, action) => {
             let {[action.id]: culledObject, ...prunedState} = state
             return prunedState
         case 'REMOVE_POTION':
+
             return {...state, [action.alchemistId]: alchemist(state[action.alchemistId], action)}
         case 'ADD_POTION':
             return {...state, [action.alchemistId]: alchemist(state[action.alchemistId], action)}
@@ -63,7 +64,7 @@ const alchemist = (state = newAlchemist, action) => {
             }
         case 'REMOVE_POTION':
             return {...state,
-                potions: state.potions.filter(p => p.id !== action.id)
+                potions: state.potions.filter(p => p !== action.id)
             }
         case 'ADD_POTION':
             return {...state,

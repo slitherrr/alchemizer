@@ -1,15 +1,16 @@
 import React from 'react'
 import Potion from './Potion'
 
-const PotionList = ({potions, alchemistId, addPotion, removePotion}) => {
+const PotionList = ({potions, alchemistId, addPotion, editPotion, removePotion}) => {
     return(
         <div>
             {potions.map(potion =>
                 (
                     <Potion
-                        key={potion.id === undefined ? "" : potion.id}
-                        removePotion={removePotion}
+                        key={potion.id}
                         alchemistId={alchemistId}
+                        editPotion={editPotion}
+                        removePotion={removePotion}
                         {...potion}
                     />
                 )
