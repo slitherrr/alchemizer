@@ -3,7 +3,8 @@ import {combineReducers} from "redux"
 const newPotion = {
     id: undefined,
     spellId: undefined,
-    cl: undefined
+    cl: undefined,
+    casterClass: undefined,
 }
 
 const potionsById = (state = {}, action) => {
@@ -36,7 +37,9 @@ const potion = (state = newPotion, action) => {
         case 'ADD_POTION':
             return {...newPotion, id: action.id}
         case 'EDIT_POTION':
-            return {...state, spellId: action.spellId}
+            if(action.attribute === undefined) {
+            }
+            return {...state, [action.attribute]: action.newValue}
         default:
             return state
     }

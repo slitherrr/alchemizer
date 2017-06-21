@@ -1,7 +1,7 @@
 import React from 'react'
 import Potion from './Potion'
 
-const PotionList = ({potions, alchemistId, addPotion, editPotion, removePotion}) => {
+const PotionList = ({alchemistId, potions, addPotion, changeSpellId, removePotion}) => {
     return(
         <div>
             {potions.map(potion =>
@@ -9,7 +9,7 @@ const PotionList = ({potions, alchemistId, addPotion, editPotion, removePotion})
                     <Potion
                         key={potion.id}
                         alchemistId={alchemistId}
-                        editPotion={editPotion}
+                        changeSpellId={changeSpellId}
                         removePotion={removePotion}
                         {...potion}
                     />

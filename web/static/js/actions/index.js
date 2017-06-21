@@ -47,10 +47,11 @@ export const removePotion = (alchemistId, id) => {
     }
 }
 
-export const editPotion = (id, spellId) => {
+export const editPotion = (id, attribute, newValue) => {
     return {
         type: 'EDIT_POTION',
         id: id,
-        spellId: spellId
+        attribute: attribute,
+        newValue: newValue,
     }
 }

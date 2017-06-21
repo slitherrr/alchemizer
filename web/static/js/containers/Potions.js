@@ -13,8 +13,8 @@ const mapDispatchToProps = (dispatch) => {
         addPotion: (alchemistId) => {
             dispatch(addPotion(alchemistId))
         },
-        editPotion: (id, spellId) => {
-            dispatch(editPotion(id, spellId))
+        changeSpellId: (id, spellId) => {
+            dispatch(editPotion(id, 'spellId', spellId))
         },
         removePotion: (alchemistId, id) => {
             dispatch(removePotion(alchemistId, id))
