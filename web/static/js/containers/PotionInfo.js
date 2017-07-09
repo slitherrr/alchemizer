@@ -7,6 +7,9 @@ const mapDispatchToProps = (dispatch) => {
         changeCasterClass: (potionId, casterClass) => {
             dispatch(editPotion(potionId, 'casterClass', casterClass))
         },
+        changeCasterLevel: (potionId, casterLevel) => {
+            dispatch(editPotion(potionId, 'cl', casterLevel))
+        }
     }
 }
 
